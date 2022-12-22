@@ -6,3 +6,4 @@ media/*
 Dockerfile
 LICENSE
 README.md
+__pycache__
