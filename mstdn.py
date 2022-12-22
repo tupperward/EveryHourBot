@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 mastodon = Mastodon(
     access_token = config.access_token,
-    api_base_url = "https://" + config.url
+    api_base_url = "https://" + config.domain
   )
 
 def index_images() ->list:
@@ -40,14 +40,15 @@ def make_post():
   global index
   image = select_random_image()
   path = "./media/{}".format(image)
-  print("Selected image is: " + path)
+  print("\nSelected image is: " + path)
   mastodon.status_post(status=None, media_ids=[mastodon.media_post(path, mime_type="image/jpg", file_name=image)])
 
 if __name__ == "__main__":
-  print("I LIVE!!!")
-  print ("Here's a list of available media: " + "\n" + str(os.listdir("./media")))
+  print("\nI LIVE!!!")
+  print ("\nHere's a list of available media: " + "\n" + str(os.listdir("./media")))
   index_images()
   make_post()
-  bs.add_job(make_post, 'interval', hours=1)
+  bs.add_job(make_post, 'cron', minute="0", hour="0-23")
   bs.start()
+  print ("\n\n\n")
   app.run()
