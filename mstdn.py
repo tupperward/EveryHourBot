@@ -1,13 +1,11 @@
 from mastodon import Mastodon
 from apscheduler.schedulers.background import BackgroundScheduler
-from flask import Flask
 from random import randrange
 import config, os
 
 #This is what will track all of our media in a list so we can pop a random item when we want.
 index = []
 bs = BackgroundScheduler()
-app = Flask(__name__)
 
 # Create the Mastodon API object
 
@@ -44,11 +42,12 @@ def make_post():
   mastodon.status_post(status=None, media_ids=[mastodon.media_post(path, mime_type="image/jpg", file_name=image)])
 
 if __name__ == "__main__":
-  print("\nI LIVE!!!")
-  print ("\nHere's a list of available media: " + "\n" + str(os.listdir("./media")))
-  index_images()
-  make_post()
-  bs.add_job(make_post, 'cron', minute="0", hour="0-23")
-  bs.start()
-  print ("\n\n\n")
-  app.run()
+    print("\nI LIVE!!!")
+    print ("\nHere's a list of available media: " + "\n" + str(os.listdir("./media")))
+    index_images()
+    make_post()
+    bs.add_job(make_post, 'cron', minute="0", hour="0-23")
+    bs.start()
+    print ("\n\n")
+    while True:
+      continue
