@@ -1,0 +1,10 @@
+.dockerignore
+.env-example
+.gitignore
+.vscode
+media/*
+hats/*
+Dockerfile
+LICENSE
+README.md
+__pycache__
