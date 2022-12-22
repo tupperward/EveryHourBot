@@ -19,6 +19,6 @@ OR
 
 Alternatively:
 1. Clone the repository to a local directory. 
-1. Set the your respective `ACCESS_TOKEN` and `URL` environment variables.
+1. Set the your respective `EHB_ACCESS_TOKEN` and `EHB_DOMAIN` environment variables.
 1. Populate the `media` directory with jpgs.
 1. `python mstdn.py`
