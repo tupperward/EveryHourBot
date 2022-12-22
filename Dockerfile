@@ -1,4 +1,4 @@
-FROM python:3.10-slim-bullseye
+FROM python
 
 RUN mkdir /ehb 
 RUN mkdir /ehb/media
@@ -9,6 +9,8 @@ COPY . /ehb/
 RUN chown daemon /ehb
 RUN chmod 705 /ehb
 RUN pip install -r requirements.txt
+
+EXPOSE 443
 
 USER daemon
 CMD ["python", "mstdn.py"]

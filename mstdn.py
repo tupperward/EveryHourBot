@@ -12,8 +12,9 @@ try:
     client_id = config.client_id,
     client_secret=config.client_secret,
     access_token=config.access_token,
-    api_base_url=config.url
+    api_base_url=config.url,
     )
+  mastodon.create_app('HourlyMiLBHats', scopes=['read','write'])
 except:
   print("Could not log into Mastodon with the given credentials.")
 
@@ -38,8 +39,11 @@ def select_random_image() -> str:
 
 def make_post():
   """Selects a random image and makes a media post"""
+  global index
   image = select_random_image()
-  mastodon.media_post("./media/{}".format(image))
+  path = "/ehb/media/{}".format(image)
+  print("Selected image is: " + path)
+  mastodon.media_post(path, mime_type="image/jpg")
 
 if __name__ == "__main__":
   print("I LIVE!!!")
