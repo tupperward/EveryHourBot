@@ -7,16 +7,11 @@ import config, os
 index = []
 
 # Create the Mastodon API object
-try:
-  mastodon = Mastodon(
-    client_id = config.client_id,
-    client_secret=config.client_secret,
-    access_token=config.access_token,
-    api_base_url=config.url,
-    )
-  mastodon.create_app('HourlyMiLBHats', scopes=['read','write'])
-except:
-  print("Could not log into Mastodon with the given credentials.")
+
+mastodon = Mastodon(
+    access_token = config.access_token,
+    api_base_url = "https://" + config.url
+  )
 
 def index_images() ->list:
   """Makes a list of all images in a directory
@@ -41,9 +36,9 @@ def make_post():
   """Selects a random image and makes a media post"""
   global index
   image = select_random_image()
-  path = "/ehb/media/{}".format(image)
+  path = "./media/{}".format(image)
   print("Selected image is: " + path)
-  mastodon.media_post(path, mime_type="image/jpg")
+  mastodon.status_post(status=None, media_ids=[mastodon.media_post(path, mime_type="image/jpg", file_name=image)])
 
 if __name__ == "__main__":
   print("I LIVE!!!")
