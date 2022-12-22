@@ -1,6 +1,8 @@
 .dockerignore
 .env-example
 .gitignore
+.vscode
+media/*
 Dockerfile
 LICENSE
-README.md F
+README.md

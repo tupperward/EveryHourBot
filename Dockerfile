@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM python:3.10-slim-bullseye
 
 RUN mkdir /ehb 
 RUN mkdir /ehb/media
@@ -8,7 +8,7 @@ COPY . /ehb/
 
 RUN chown daemon /ehb
 RUN chmod 705 /ehb
-RUN npm install
+RUN pip install -r requirements.txt
 
 USER daemon
-CMD ["node", "index.js"]
+CMD ["python", "mstdn.py"]
