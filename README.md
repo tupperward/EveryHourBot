@@ -6,7 +6,9 @@ Thanks to [thunderysteak](https://github.com/thunderysteak) for making the origi
 ## Dependencies
 - Docker
 - a directory full of jpgs
+
 OR
+
 - Python 3.10
 - `pip install -r requirements.txt`
 - a directory full of jpgs
