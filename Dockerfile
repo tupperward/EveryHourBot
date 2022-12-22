@@ -1,4 +1,4 @@
-FROM python
+FROM python:3.10-slim
 
 RUN mkdir /ehb 
 RUN mkdir /ehb/media

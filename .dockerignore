@@ -3,6 +3,7 @@
 .gitignore
 .vscode
 media/*
+hats/*
 Dockerfile
 LICENSE
 README.md
