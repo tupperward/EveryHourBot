@@ -17,7 +17,7 @@ OR
 
 ## Quick Start using Docker
 1. [Install Docker](https://docs.docker.com/engine/install/)
-1. `docker run -d --env EHB_ACCESS_TOKEN=<foo> --env EHB_DOMAIN=<bar> --volume /full/path/to/media:/ehb/media tupperward/everyhourbot:mastodon`
+1. `docker run -d --env EHB_ACCESS_TOKEN=<foo> --env EHB_DOMAIN=<bar> --volume /full/path/to/media:/ehb/media tupperward/everyhourbot:latest`
 
 ##Alternatively:
 1. Clone the repository to a local directory. 
