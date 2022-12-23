@@ -65,4 +65,5 @@ if __name__ == "__main__":
     bs.add_job(make_post, 'cron', minute="0", hour="0-23")
     bs.start()
     while True:
+      sleep(3599)
       continue
