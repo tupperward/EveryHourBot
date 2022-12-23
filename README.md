@@ -5,7 +5,7 @@ Thanks to [thunderysteak](https://github.com/thunderysteak) for making the origi
 
 ## Dependencies
 - Docker
-- a directory full of jpgs
+- a directory full of [valid images](https://www.iana.org/assignments/media-types/media-types.xhtml#image). (Don't worry, it's pretty much everything.)
 
 OR
 
@@ -17,8 +17,8 @@ OR
 1. [Install Docker](https://docs.docker.com/engine/install/)
 1. `docker run -d --env EHB_ACCESS_TOKEN=<foo> --env EHB_DOMAIN=<bar> --volume /full/path/to/media:/ehb/media tupperward/everyhourbot:mastodon`
 
-Alternatively:
+###Alternatively:
 1. Clone the repository to a local directory. 
-1. Set the your respective `EHB_ACCESS_TOKEN` and `EHB_DOMAIN` environment variables.
-1. Populate the `media` directory with jpgs.
+1. Set the your respective `ACCESS_TOKEN` and `URL` environment variables.
+1. Populate the `media` directory with [valid images](https://www.iana.org/assignments/media-types/media-types.xhtml#image).
 1. `python mstdn.py`
