@@ -13,4 +13,4 @@ RUN pip install -r requirements.txt
 EXPOSE 443
 
 USER daemon
-CMD ["python", "mstdn.py"]
+CMD ["python","-u","mstdn.py"]
