@@ -56,6 +56,7 @@ def make_post():
     else:
       break
 
+# TODO For whatever reason, when I added the 5 while/try/except nest, docker logs stopped returning anything. Fix that.
 if __name__ == "__main__":
     print("\nI LIVE!!!")
     print ("\nHere's a list of available media: " + "\n" + str(os.listdir("./media")))
