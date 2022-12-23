@@ -2,7 +2,6 @@ from mastodon import Mastodon
 from apscheduler.schedulers.background import BackgroundScheduler
 from random import randrange
 from time import sleep
-import config, os
 
 #This is what will track all of our media in a list so we can pop a random item when we want.
 index = []
