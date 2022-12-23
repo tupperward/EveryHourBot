@@ -46,8 +46,6 @@ def make_post():
     try:
       mastodon.status_post(status=None, media_ids=[mastodon.media_post(path, mime_type="image/{}".format(extension), file_name=image)])
       print("Success!")
-      if attempts >= 5:
-        break
     except:
       attempt += 1
       print("Failed to create post. Sleeping 1 second and retrying.")
@@ -55,17 +53,16 @@ def make_post():
       sleep(2)
       continue
     else:
-      print("See you later, Space Cowboy.")
+      print("See you later, Space Cowboy.\n")
       break
 
 # TODO For whatever reason, when I added the 5 while/try/except nest, docker logs stopped returning anything. Fix that.
 if __name__ == "__main__":
     print("\nI LIVE!!!")
-    print ("\nHere's a list of available media: " + "\n" + str(os.listdir("./media")))
+    print ("\nHere's a list of available media: " + "\n\n" + str(os.listdir("./media")))
     index_images()
     make_post()
     bs.add_job(make_post, 'cron', minute="0", hour="0-23")
     bs.start()
     while True:
-      sleep(3599)
       continue
