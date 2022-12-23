@@ -1,6 +1,7 @@
 from mastodon import Mastodon
 from apscheduler.schedulers.background import BackgroundScheduler
 from random import randrange
+from time import sleep
 import config, os
 
 #This is what will track all of our media in a list so we can pop a random item when we want.
@@ -38,8 +39,22 @@ def make_post():
   global index
   image = select_random_image()
   path = "./media/{}".format(image)
-  print("\nSelected image is: " + path)
-  mastodon.status_post(status=None, media_ids=[mastodon.media_post(path, mime_type="image/jpg", file_name=image)])
+  print("\nSelected image is: " + image)
+  extension = os.path.splitext(path)[1].strip('.')
+  attempts = 0
+  while attempts < 5:
+    try:
+      mastodon.status_post(status=None, media_ids=[mastodon.media_post(path, mime_type="image/{}".format(extension), file_name=image)])
+      if attempts >= 5:
+        break
+    except:
+      attempt += 1
+      print("Failed to create post. Sleeping 1 second and retrying.")
+      print("This is attempt {}".format(attempts))
+      sleep(1)
+      continue
+    else:
+      break
 
 if __name__ == "__main__":
     print("\nI LIVE!!!")
