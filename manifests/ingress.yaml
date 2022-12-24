@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ehb-ingress
+  namespace: ehb
+  labels:
+    name: ehb-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: milbhats.botsin.space
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: mastodon-worker
+            port: 
+              number: 443

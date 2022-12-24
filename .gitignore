@@ -5,3 +5,4 @@ media/*
 .vscode
 __pycache__
 hats
+manifests/secret.yaml
