@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mastodon-worker
+  namespace: ehb
+  labels:
+    app: hourly-milb-hats
+    platform: mastodon
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: hourly-milb-hats
+  template:
+    metadata:
+      labels:
+        app: hourly-milb-hats
+    spec:
+      containers:
+      - name: poster
+        image: tupperward/everyhourbot:latest
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 80
+          - containerPort: 443
+        env:
+        - name: EHB_ACCESS_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: ehb-auth
+              key: token
+        - name: EHB_DOMAIN
+          valueFrom:
+            secretKeyRef:
+              name: ehb-auth
+              key: domain
+        volumeMounts:
+        - name:  ehb-media
+          mountPath:  /ehb/media
+      restartPolicy: Always
+      volumes:
+      - name: ehb-media
+        persistentVolumeClaim:
+          claimName: ehb-media-pvc
