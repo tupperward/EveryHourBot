@@ -1,12 +1,10 @@
 from mastodon import Mastodon
-from apscheduler.schedulers.background import BackgroundScheduler
 from random import randrange
 from time import sleep
 import os, config
 
 #This is what will track all of our media in a list so we can pop a random item when we want.
 index = []
-bs = BackgroundScheduler()
 
 # Create the Mastodon API object
 
@@ -51,7 +49,6 @@ def make_post():
       attempts += 1
       if attempts == 5:
         print("\nAttempted 5 times. Skipping this hour.")
-        sleep(3599)
         break
       else:
         print("\nThis is attempt {}".format(attempts))
@@ -61,15 +58,12 @@ def make_post():
         continue
     else:
       print("See you later, Space Cowboy.\n")
-      sleep(3599)
       break
 
 if __name__ == "__main__":
     print("\nI LIVE!!!")
-    bs.add_job(make_post, 'cron', minute="0", hour="0-23")
-    bs.start()
     index_images()
     print ("\nList of all {} available files in /ehb/media: ".format(len(index)) + "\n\n" + str(os.listdir("./media")))
-    make_post()
     while True:
-      continue
+      make_post()
+      sleep(3600)
